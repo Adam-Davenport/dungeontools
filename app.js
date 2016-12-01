@@ -1,20 +1,20 @@
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
-
 var mustacheExpress = require('mustache-express');
 
-// Register '.mustache' extension with The Mustache Express
-app.engine('mustache', mustacheExpress());
+// Register '.html' extension with The Mustache Express
+app.engine('html', mustacheExpress());
 
 app.set('view engine', 'mustache');
-app.set('views', __dirname + '/views');
-app.use(bodyParser.urlencoded({extended: true}));
+app.set('views', __dirname + '/views'); // you can change '/views' to '/public',
+    // but I recommend moving your templates to a directory
+    // with no outside access for security reasons
 
-app.get("/", function (req, res) {
-	res.send("Test");
+app.get('/', function (req, res) {
+    res.render('index.html');
 });
 
 app.listen(3000, function () {
-	console.log("Server has started.")
-});
+	console.log("The server has started.")
+})
