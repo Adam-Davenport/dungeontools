@@ -12,6 +12,14 @@ app.get('/', function (req, res) {
     res.render('index');
 });
 
+app.get('/calculator', function (req, res) {
+	res.render('calculator');
+});
+
+app.get('/class/paladin', function (req, res) {
+	res.render('class/paladin');
+});
+
 app.listen(3000, function () {
 	console.log('Running dungeons tools server on port 3000.');
 });
