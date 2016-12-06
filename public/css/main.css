@@ -1,0 +1,31 @@
+h1{
+	font-size: 44px;
+}
+h2{
+	border-bottom: solid 1px;
+	width: 33%;
+}
+h3{
+}
+h1, h2, h3, h4, h5, h6{
+	color: #3650A4;
+}
+.table-companion{
+	width: 75%;
+	float:; left;
+}
+.small-table {
+	padding: 0px;
+}
+.small-table table{ 
+	font-size: 12px;
+}
+.small-table h3{
+	font-size: 16px;
+}
+.test{
+	float: left;
+}
+body{
+	margin-bottom: 15%;
+}
