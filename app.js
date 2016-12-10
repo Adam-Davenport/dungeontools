@@ -1,7 +1,11 @@
 // Setting up express and handlebars
-var express = require('express');
-var exphbs  = require('express-handlebars');
-var app = express();
+var express = require('express'),
+	exphbs  = require('express-handlebars'),
+	app = express(),
+	mongoose = require('mongoose');
+
+//Connecting mongoose to the local database
+mongoose.connect("mongodb://localhost/dungeontools");
 
 // Sets the public directory so css and js can be accessed.
 app.use(express.static(__dirname + '/public'));
@@ -24,7 +28,30 @@ app.get('/calculator', function (req, res) {
 app.get('/class/paladin', function (req, res) {
 	res.render('class/paladin');
 });
+
 // ********************************
+//      Monster Collection
+// ********************************
+
+// setting up mongoose for mosnters
+var monsterSchema = new mongoose.Schema({
+	name: String,
+	health: Number
+});
+
+var Monster = mongoose.model("Monster", monsterSchema);
+
+app.get('/monsters', function (req, res) {
+	res.render('monsters');
+})
+
+app.post('/monsters', function(req,res){
+	res.send(req);
+});
+
+app.get('/monsters/new', function (req, res) {
+	res.render('monsters/new');
+})
 
 // Running the server to listen on port 3000
 app.listen(3000, function () {
