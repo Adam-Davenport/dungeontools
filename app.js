@@ -2,6 +2,7 @@
 var express = require('express'),
 	exphbs  = require('express-handlebars'),
 	app = express(),
+	bodyparser = require('body-parser'),
 	mongoose = require('mongoose');
 
 //Connecting mongoose to the local database
@@ -39,6 +40,7 @@ var monsterSchema = new mongoose.Schema({
 	health: Number
 });
 
+// Create a DB model for monsters
 var Monster = mongoose.model("Monster", monsterSchema);
 
 app.get('/monsters', function (req, res) {
@@ -46,7 +48,7 @@ app.get('/monsters', function (req, res) {
 })
 
 app.post('/monsters', function(req,res){
-	res.send(req);
+	res.send('test');
 });
 
 app.get('/monsters/new', function (req, res) {
