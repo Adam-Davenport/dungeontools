@@ -2,11 +2,14 @@
 var express = require('express'),
 	exphbs  = require('express-handlebars'),
 	app = express(),
-	bodyparser = require('body-parser'),
+	bodyParser = require('body-parser'),
 	mongoose = require('mongoose');
 
 //Connecting mongoose to the local database
 mongoose.connect("mongodb://localhost/dungeontools");
+
+// Setup body-parser middleware
+app.use(bodyParser.urlencoded({extended: true}));
 
 // Sets the public directory so css and js can be accessed.
 app.use(express.static(__dirname + '/public'));
@@ -48,7 +51,7 @@ app.get('/monsters', function (req, res) {
 })
 
 app.post('/monsters', function(req,res){
-	res.send('test');
+	res.send(req.body.monster);
 });
 
 app.get('/monsters/new', function (req, res) {
