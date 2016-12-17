@@ -22,15 +22,15 @@ app.set('view engine', 'handlebars');
 //     Rendering the main pages
 // ********************************
 app.get('/', function (req, res) {
-    res.render('index');
+    res.render('index', {title: "Dungeon Tools"});
 });
 
 app.get('/calculator', function (req, res) {
-	res.render('calculator');
+	res.render('calculator', {title: "Point-Buy Calculator"});
 });
 
 app.get('/class/paladin', function (req, res) {
-	res.render('class/paladin');
+	res.render('class/paladin', {title: "Paladin"});
 });
 
 // ********************************
@@ -40,14 +40,28 @@ app.get('/class/paladin', function (req, res) {
 // setting up mongoose for mosnters
 var monsterSchema = new mongoose.Schema({
 	name: String,
-	health: Number
+	health: Number,
+	ac: Number,
+	speed: String,
+	str: Number,
+	dex: Number,
+	con: Number,
+	int: Number,
+	wis: Number,
+	cha: Number,
+	prof: Number,
+	saving: String,
+	skills: String,
+	senses: String,
+	languages: String,
+	challenge: String
 });
 
 // Create a DB model for monsters
 var Monster = mongoose.model("Monster", monsterSchema);
 
 app.get('/monsters', function (req, res) {
-	res.render('monsters');
+	res.render('monsters', {title: "Monsters"});
 })
 
 app.post('/monsters', function(req,res){
@@ -55,7 +69,7 @@ app.post('/monsters', function(req,res){
 });
 
 app.get('/monsters/new', function (req, res) {
-	res.render('monsters/new');
+	res.render('monsters/new', {title: "New Monser"});
 })
 
 // Running the server to listen on port 3000
