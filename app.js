@@ -40,7 +40,7 @@ app.get('/class/paladin', function (req, res) {
 // setting up mongoose for mosnters
 var monsterSchema = new mongoose.Schema({
 	name: String,
-	health: Number,
+	health: String,
 	ac: Number,
 	speed: String,
 	str: Number,
@@ -61,11 +61,27 @@ var monsterSchema = new mongoose.Schema({
 var Monster = mongoose.model("Monster", monsterSchema);
 
 app.get('/monsters', function (req, res) {
-	res.render('monsters', {title: "Monsters"});
+	Monster.find({}, function (error, monsters) {
+		if(error){
+			console.log(error);
+		}
+		else{
+			res.render('monsters', {title: "Monsters", monsters: monsters});
+		}
+	});
 })
 
 app.post('/monsters', function(req,res){
-	res.send(req.body.monster);
+	var body = req.body;
+	var newMonster = {name: body.name, health: body.health, ac:body.ac}
+	Monster.create(newMonster, function (error) {
+		if(error){
+			console.log(error);
+		}
+		else{
+			res.redirect('/monsters');
+		}
+	})
 });
 
 app.get('/monsters/new', function (req, res) {
