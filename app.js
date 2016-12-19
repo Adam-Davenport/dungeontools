@@ -41,6 +41,8 @@ app.get('/class/paladin', function (req, res) {
 var monsterSchema = new mongoose.Schema({
 	name: String,
 	health: String,
+	type: String,
+	size: String,
 	ac: Number,
 	speed: String,
 	str: Number,
@@ -73,7 +75,26 @@ app.get('/monsters', function (req, res) {
 
 app.post('/monsters', function(req,res){
 	var body = req.body;
-	var newMonster = {name: body.name, health: body.health, ac:body.ac}
+	var newMonster = {
+		name: body.name,
+		health: body.health, 
+		type: body.type,
+		size: body.size,
+		ac:body.ac,
+		speed: body.speed,
+		str: body.str,
+		dex: body.dex,
+		con: body.con,
+		int: body.int,
+		wis: body.wis,
+		cha: body.cha,
+		prof: body.prof,
+		saving: body.saving,
+		skills: body.skills,
+		senses: body.senses,
+		languages: body.languages,
+		challenge: body.challenge
+	}
 	Monster.create(newMonster, function (error) {
 		if(error){
 			console.log(error);
