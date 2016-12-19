@@ -1,7 +1,29 @@
-<h1>Monsters</h1>
-
-{{#each monsters}}
-	<li>{{monssters.monster}}</li>
-{{/each}}
-
+<div class="container">
+	<h1>Monsters</h1>
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th>#</th>
+	      <th>Name</th>
+	      <th>Challenge Rating</th>
+	      <th>Type</th>
+	      <th>Size</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+		{{#each monsters}}
+			<div class="monster">
+				<td>{{this.name}}</td>
+				<td>{{this.challenge}}</td>
+				<td>{{this.type}}</td>
+				<td>{{this.size}}</td>
+			</div>
+		{{/each}}
+	    </tr>
+	  </tbody>
+	</table>
+	<div class="row">
+	</div>
 <a href="/monsters/new" class="btn btn-primary btn-lg">Add a new monster.</a>
+</div>
