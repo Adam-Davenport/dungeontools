@@ -62,17 +62,20 @@ var monsterSchema = new mongoose.Schema({
 // Create a DB model for monsters
 var Monster = mongoose.model("Monster", monsterSchema);
 
+// Monster routes
+// Index Route
 app.get('/monsters', function (req, res) {
 	Monster.find({}, function (error, monsters) {
 		if(error){
 			console.log(error);
 		}
 		else{
-			res.render('monsters', {title: "Monsters", monsters: monsters});
+			res.render('monsters/index', {title: "Monsters", monsters: monsters});
 		}
 	});
 })
 
+// Create route
 app.post('/monsters', function(req,res){
 	var body = req.body;
 	var newMonster = {
@@ -105,9 +108,10 @@ app.post('/monsters', function(req,res){
 	})
 });
 
+// New Route 
 app.get('/monsters/new', function (req, res) {
 	res.render('monsters/new', {title: "New Monser"});
-})
+});
 
 // Running the server to listen on port 3000
 app.listen(3000, function () {
