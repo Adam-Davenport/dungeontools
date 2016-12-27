@@ -1,9 +1,10 @@
-// Setting up express and handlebars
+// Setting up express and packages
 var express = require('express'),
-	exphbs  = require('express-handlebars'),
-	app = express(),
-	bodyParser = require('body-parser'),
-	mongoose = require('mongoose');
+app 				= express(),
+mongoose 		= require('mongoose'),
+bodyParser 	= require('body-parser'),
+methodOver	= require('method-override'),
+exphbs  		= require('express-handlebars');
 
 //Connecting mongoose to the local database
 mongoose.connect("mongodb://localhost/dungeontools");
@@ -21,10 +22,13 @@ app.set('view engine', 'handlebars');
 // ********************************
 //     Rendering the main pages
 // ********************************
+
+// Root Route
 app.get('/', function (req, res) {
     res.render('index', {title: "Dungeon Tools"});
 });
 
+// Calculator
 app.get('/calculator', function (req, res) {
 	res.render('calculator', {title: "Point-Buy Calculator"});
 });
@@ -62,7 +66,10 @@ var monsterSchema = new mongoose.Schema({
 // Create a DB model for monsters
 var Monster = mongoose.model("Monster", monsterSchema);
 
-// Monster routes
+//********************
+//   Monster routes
+//******************
+
 // Index Route
 app.get('/monsters', function (req, res) {
 	Monster.find({}, function (error, monsters) {
@@ -74,6 +81,11 @@ app.get('/monsters', function (req, res) {
 		}
 	});
 })
+
+// New Route 
+app.get('/monsters/new', function (req, res) {
+	res.render('monsters/new', {title: "New Monser"});
+});
 
 // Create route
 app.post('/monsters', function(req,res){
@@ -96,8 +108,7 @@ app.post('/monsters', function(req,res){
 		skills: body.skills,
 		senses: body.senses,
 		languages: body.languages,
-		challenge: body.challenge
-	}
+		challenge: body.challenge};
 	Monster.create(newMonster, function (error) {
 		if(error){
 			console.log(error);
@@ -108,9 +119,16 @@ app.post('/monsters', function(req,res){
 	})
 });
 
-// New Route 
-app.get('/monsters/new', function (req, res) {
-	res.render('monsters/new', {title: "New Monser"});
+// Show Route
+app.get('/monsters/:id', function (req, res) {
+	Monster.findOne({name: req.params.id}, function(error, foundMonster){
+		if(error || foundMonster == null){
+			res.send(error);
+		}
+		else{
+			res.render('monsters/show', {title: foundMonster.name, monster: foundMonster});
+		}
+	})
 });
 
 // Running the server to listen on port 3000
