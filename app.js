@@ -131,6 +131,23 @@ app.get('/monsters/:id', function (req, res) {
 	})
 });
 
+// Edit
+app.get('/monsters/:id/edit', function (req, res) {
+	Monster.findOne({name: req.params.id}, function (error, foundMonster){
+		if(error || foundMonster == nul){
+			res.send(error);
+		}
+		else{
+			res.render('monsters/edit', {title: 'Edit ' + foundMonster.name, monster: foundMonster});
+		}
+	})
+});
+
+// Update
+app.put('/monsters/:id', function(req, res){
+
+});
+
 // Running the server to listen on port 3000
 app.listen(3000, function () {
 	console.log('Running dungeons tools server on port 3000.');
