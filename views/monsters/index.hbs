@@ -13,12 +13,10 @@
 	  <tbody>
 	    <tr>
 		{{#each monsters}}
-			<div class="monster">
-				<td>{{this.name}}</td>
-				<td>{{this.challenge}}</td>
-				<td>{{this.type}}</td>
-				<td>{{this.size}}</td>
-			</div>
+			<td><a href="/monsters/{{this.name}}">{{this.name}}</a></td>
+			<td>{{this.challenge}}</td>
+			<td>{{this.type}}</td>
+			<td>{{this.size}}</td>
 		{{/each}}
 	    </tr>
 	  </tbody>
