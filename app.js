@@ -60,7 +60,8 @@ var monsterSchema = new mongoose.Schema({
 	skills: String,
 	senses: String,
 	languages: String,
-	challenge: String
+	challenge: String,
+	actions: Array
 });
 
 // Create a DB model for monsters
@@ -108,7 +109,8 @@ app.post('/monsters', function(req,res){
 		skills: body.skills,
 		senses: body.senses,
 		languages: body.languages,
-		challenge: body.challenge};
+		challenge: body.challenge,
+		actions: body.actions}
 	Monster.create(newMonster, function (error) {
 		if(error){
 			console.log(error);
@@ -140,7 +142,7 @@ app.get('/monsters/:id/edit', function (req, res) {
 		else{
 			res.render('monsters/edit', {title: 'Edit ' + foundMonster.name, monster: foundMonster});
 		}
-	})
+	});
 });
 
 // Update
