@@ -21,4 +21,4 @@ var monsterSchema = new mongoose.Schema({
 	challenge: String,
 	actions: Array
 });
-module.exports = mongoose.model("Campground", campgroundSchema);
+module.exports = mongoose.model("Monster", monsterSchema);
