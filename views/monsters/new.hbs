@@ -1,25 +1,61 @@
 <div class="container">
 	<h1>Add A New Monster</h1>
 	<form action="/monsters" method="post">
-	<input type="text" placeholder="name" name="name" class="form-control">
-	<input type="text" placeholder="health" name="health" class="form-control">
-	<input type="text" placeholder="type" name="type" class="form-control">
-	<input type="text" placeholder="size" name="size" class="form-control">
-	<input type="text" placeholder="ac" name="ac" class="form-control">
-	<input type="text" placeholder="speed" name="speed" class="form-control">
-	<input type="text" placeholder="str" name="str" class="form-control">
-	<input type="text" placeholder="dex" name="dex" class="form-control">
-	<input type="text" placeholder="con" name="con" class="form-control">
-	<input type="text" placeholder="int" name="int" class="form-control">
-	<input type="text" placeholder="wis" name="wis" class="form-control">
-	<input type="text" placeholder="cha" name="cha" class="form-control">
-	<input type="text" placeholder="prof" name="prof" class="form-control">
-	<input type="text" placeholder="saving" name="saving" class="form-control">
-	<input type="text" placeholder="skills" name="skills" class="form-control">
-	<input type="text" placeholder="senses" name="senses" class="form-control">
-	<input type="text" placeholder="languages" name="languages" class="form-control">
-	<input type="text" placeholder="challenge" name="challenge" class="form-control">
-	<input type="" placeholder="Action" name="action[0]" class="form-control">
+	<input type="text" placeholder="name" name="monster[name]" class="form-control">
+	<input type="text" placeholder="health" name="monster[health]" class="form-control">
+	<input type="text" placeholder="type" name="monster[type]" class="form-control">
+	<input type="text" placeholder="size" name="monster[size]" class="form-control">
+	<input type="text" placeholder="ac" name="monster[ac]" class="form-control">
+	<input type="text" placeholder="speed" name="monster[speed]" class="form-control">
+	<div class="row">
+		<div class="col-xs-4 col-sm-2">
+			<div class="form-inline">
+				<label for="monster[str]">Strength:</label>
+				<select name="monster[str]" id="" class="ability form-control"></select>
+			</div>
+		</div>
+		<div class="col-xs-4 col-sm-2">
+			<div class="form-inline">
+				<label for="monster[dex]">Dexterity:</label>
+				<select name="monster[dex]" id="" class="ability form-control"></select>
+			</div>
+		</div>
+		<div class="col-xs-4 col-sm-2">
+			<div class="form-inline">
+				<label for="monster[con]">Constitution:</label>
+				<select name="monster[con]" id="" class="ability form-control"></select>
+			</div>
+		</div>
+		<div class="col-xs-4 col-sm-2">
+			<div class="form-inline">
+				<label for="monster[int]">Intelligence:</label>
+				<select name="monster[int]" id="" class="ability form-control"></select>
+			</div>
+		</div>
+		<div class="col-xs-4 col-sm-2">
+			<div class="form-inline">
+				<label for="monster[wis]">Wisdom:</label>
+				<select name="monster[wis]" id="" class="ability form-control"></select>
+			</div>
+		</div>
+		<div class="col-xs-4 col-sm-2">
+			<div class="form-inline">
+				<label for="monster[cha]">Charisma:</label>
+				<select name="monster[cha]" id="" class="ability form-control"></select>
+			</div>
+		</div>
+	</div>
+	<div class="form-inline">
+		<label for="monster[prof]">Proficiency:</label>
+		<select name="monster[prof]" id="prof"></select>
+	</div>
+	<input type="text" placeholder="saving" name="monster[saving]" class="form-control">
+	<input type="text" placeholder="skills" name="monster[skills]" class="form-control">
+	<input type="text" placeholder="senses" name="monster[senses]" class="form-control">
+	<input type="text" placeholder="languages" name="monster[languages]" class="form-control">
+	<input type="text" placeholder="challenge" name="monster[[challenge]" class="form-control">
+	<input type="" placeholder="Action" name="monster[action]" class="form-control">
 	<input type="submit">
 	</form>
 </div>
+<script src="/js/monster/new.js"></script>
