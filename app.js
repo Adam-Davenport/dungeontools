@@ -3,8 +3,8 @@ var express = require('express'),
 app 				= express(),
 mongoose 		= require('mongoose'),
 bodyParser 	= require('body-parser'),
-Monster 		= require('./models/monster'),
 methodOver	= require('method-override'),
+Monster 		= require('./models/monster'),
 exphbs  		= require('express-handlebars');
 
 //Connecting mongoose to the local database
@@ -56,7 +56,7 @@ app.get('/monsters', function (req, res) {
 			res.render('monsters/index', {title: "Monsters", monsters: monsters});
 		}
 	});
-})
+});
 
 // New Route 
 app.get('/monsters/new', function (req, res) {
@@ -85,7 +85,7 @@ app.post('/monsters', function(req,res){
 		senses: body.senses,
 		languages: body.languages,
 		challenge: body.challenge,
-		actions: body.actions}
+		actions: body.actions};
 	Monster.create(newMonster, function (error) {
 		if(error){
 			console.log(error);
@@ -111,7 +111,7 @@ app.get('/monsters/:id', function (req, res) {
 // Edit
 app.get('/monsters/:id/edit', function (req, res) {
 	Monster.findOne({name: req.params.id}, function (error, foundMonster){
-		if(error || foundMonster == nul){
+		if(error || foundMonster == null){
 			res.send(error);
 		}
 		else{
