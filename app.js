@@ -65,28 +65,7 @@ app.get('/monsters/new', function (req, res) {
 
 // Create route
 app.post('/monsters', function(req,res){
-	var body = req.body;
-	var newMonster = {
-		name: body.name,
-		health: body.health, 
-		type: body.type,
-		size: body.size,
-		ac:body.ac,
-		speed: body.speed,
-		str: body.str,
-		dex: body.dex,
-		con: body.con,
-		int: body.int,
-		wis: body.wis,
-		cha: body.cha,
-		prof: body.prof,
-		saving: body.saving,
-		skills: body.skills,
-		senses: body.senses,
-		languages: body.languages,
-		challenge: body.challenge,
-		actions: body.actions};
-	Monster.create(newMonster, function (error) {
+	Monster.create(req.body.monster, function (error) {
 		if(error){
 			console.log(error);
 		}
@@ -122,7 +101,14 @@ app.get('/monsters/:id/edit', function (req, res) {
 
 // Update
 app.put('/monsters/:id', function(req, res){
-
+	Monster.findAndUpdate({name: req.body.monster}, function (error, monster) {
+		if(error){
+			res.send(error);
+		}
+		else{
+			res.redirect('/monster/'+req.params.id);
+		}
+	})
 });
 
 // Running the server to listen on port 3000
