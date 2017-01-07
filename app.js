@@ -3,6 +3,7 @@ var express = require('express'),
 app 				= express(),
 mongoose 		= require('mongoose'),
 bodyParser 	= require('body-parser'),
+Monster 		= require('./models/monster'),
 methodOver	= require('method-override'),
 exphbs  		= require('express-handlebars');
 
@@ -40,32 +41,6 @@ app.get('/class/paladin', function (req, res) {
 // ********************************
 //      Monster Collection
 // ********************************
-
-// setting up mongoose for mosnters
-var monsterSchema = new mongoose.Schema({
-	name: String,
-	health: String,
-	type: String,
-	size: String,
-	ac: Number,
-	speed: String,
-	str: Number,
-	dex: Number,
-	con: Number,
-	int: Number,
-	wis: Number,
-	cha: Number,
-	prof: Number,
-	saving: String,
-	skills: String,
-	senses: String,
-	languages: String,
-	challenge: String,
-	actions: Array
-});
-
-// Create a DB model for monsters
-var Monster = mongoose.model("Monster", monsterSchema);
 
 //********************
 //   Monster routes
