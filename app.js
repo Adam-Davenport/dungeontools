@@ -53,6 +53,7 @@ app.get('/monsters', function (req, res) {
 			console.log(error);
 		}
 		else{
+			// Render the page. Links will be populated with dashes client side with js
 			res.render('monsters/index', {title: "Monsters", monsters: monsters});
 		}
 	});
@@ -60,12 +61,13 @@ app.get('/monsters', function (req, res) {
 
 // New Route 
 app.get('/monsters/new', function (req, res) {
-	res.render('monsters/new', {title: "New Monser"});
+	res.render('monsters/new', {title: "New Monster"});
 });
 
 // Create route
 app.post('/monsters', function(req,res){
 	Monster.create(req.body.monster, function (error) {
+		console.log(req.body.monster)
 		if(error){
 			console.log(error);
 		}
@@ -77,7 +79,9 @@ app.post('/monsters', function(req,res){
 
 // Show Route
 app.get('/monsters/:id', function (req, res) {
-	Monster.findOne({name: req.params.id}, function(error, foundMonster){
+	// Remove all dashes from the id param to search in the DB
+	var thisMonster = req.params.id.replace('-', ' ')
+	Monster.findOne({name: thisMonster}, function(error, foundMonster){
 		if(error || foundMonster == null){
 			res.send(error);
 		}
@@ -106,10 +110,31 @@ app.put('/monsters/:id', function(req, res){
 			res.send(error);
 		}
 		else{
-			res.redirect('/monster/'+req.params.id);
+			res.redirect('/monster/s'+req.params.id);
 		}
 	})
 });
+// Delete Route
+app.get('/monsters/:id/delete', function (req, res) {
+	Monster.findOneAndRemove({name: req.params.id}, function (error, monster) {
+		if(error){
+			res.send(error)
+		}
+		else{
+			res.redirect('/monsters')
+		}
+	})
+})
+
+// Functions
+
+function removeSpaces(input){
+	return input.replace(' ', '-')
+}
+
+function removeDashes(input){
+	return input.replace('-', ' ')
+}
 
 // Running the server to listen on port 3000
 app.listen(3000, function () {
