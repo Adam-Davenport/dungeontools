@@ -11,17 +11,18 @@
 	    </tr>
 	  </thead>
 	  <tbody>
-	    <tr>
 		{{#each monsters}}
-			<td><a href="/monsters/{{this.name}}">{{this.name}}</a></td>
+			<tr>
+			<td><a href="" class="monster">{{this.name}}</a></td>
 			<td>{{this.challenge}}</td>
 			<td>{{this.type}}</td>
 			<td>{{this.size}}</td>
+			</tr>
 		{{/each}}
-	    </tr>
 	  </tbody>
 	</table>
 	<div class="row">
 	</div>
 <a href="/monsters/new" class="btn btn-primary btn-lg">Add a new monster.</a>
 </div>
+<script src="/js/monster/index.js"></script>
