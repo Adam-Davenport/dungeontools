@@ -38,10 +38,6 @@ app.get('/class/paladin', function (req, res) {
 	res.render('class/paladin', {title: "Paladin"});
 });
 
-// ********************************
-//      Monster Collection
-// ********************************
-
 //********************
 //   Monster routes
 //******************
@@ -79,7 +75,7 @@ app.post('/monsters', function(req,res){
 
 // Show Route
 app.get('/monsters/:id', function (req, res) {
-	// Remove all dashes from the id param to search in the DB probably not the best solution permanently
+	// Remove all dashes from the id param to search in the DB probably
 	var thisMonster = req.params.id.replace('_', ' ')
 	Monster.findOne({name: thisMonster}, function(error, foundMonster){
 		if(error || foundMonster == null){
@@ -95,7 +91,12 @@ app.get('/monsters/:id', function (req, res) {
 app.get('/monsters/:id/edit', function (req, res) {
 	Monster.findOne({name: req.params.id}, function (error, foundMonster){
 		if(error || foundMonster == null){
-			res.send(error);
+			if(error){
+				res.send(error);
+			}
+			else{
+				res.send('Monster not found')
+			}
 		}
 		else{
 			res.render('monsters/edit', {title: 'Edit ' + foundMonster.name, monster: foundMonster});
@@ -114,9 +115,10 @@ app.put('/monsters/:id', function(req, res){
 		}
 	})
 });
+
 // Delete Route
 app.get('/monsters/:id/delete', function (req, res) {
-	Monster.findOneAndRemove({name: req.params.id}, function (error, monster) {
+	Monster.findOneAndRemove({name: req.params.id}, function (error) {
 		if(error){
 			res.send(error)
 		}
@@ -125,16 +127,6 @@ app.get('/monsters/:id/delete', function (req, res) {
 		}
 	})
 })
-
-// Functions
-
-function removeSpaces(input){
-	return input.replace(' ', '-')
-}
-
-function removeDashes(input){
-	return input.replace('-', ' ')
-}
 
 // Running the server to listen on port 3000
 app.listen(3000, function () {
