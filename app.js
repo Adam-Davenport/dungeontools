@@ -79,8 +79,8 @@ app.post('/monsters', function(req,res){
 
 // Show Route
 app.get('/monsters/:id', function (req, res) {
-	// Remove all dashes from the id param to search in the DB
-	var thisMonster = req.params.id.replace('-', ' ')
+	// Remove all dashes from the id param to search in the DB probably not the best solution permanently
+	var thisMonster = req.params.id.replace('_', ' ')
 	Monster.findOne({name: thisMonster}, function(error, foundMonster){
 		if(error || foundMonster == null){
 			res.send(error);
