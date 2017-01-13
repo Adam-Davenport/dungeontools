@@ -3,7 +3,7 @@ var express = require('express'),
 app 				= express(),
 mongoose 		= require('mongoose'),
 bodyParser 	= require('body-parser'),
-methodOver	= require('method-override'),
+// methodOver	= require('method-override'),
 Monster 		= require('./models/monster'),
 exphbs  		= require('express-handlebars');
 
@@ -38,9 +38,9 @@ app.get('/class/paladin', function (req, res) {
 	res.render('class/paladin', {title: "Paladin"});
 });
 
-//********************
+//========================
 //   Monster routes
-//******************
+//========================
 
 // Index Route
 app.get('/monsters', function (req, res) {
