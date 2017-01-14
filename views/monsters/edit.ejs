@@ -1,5 +1,6 @@
+<% include ../partials/header%>
 <div class="container">
-	<h1>Edit {{monster.name}}</h1>
+	<h1>Edit <%= monster.name %></h1>
 	<form action="/monsters" method="post">
 	<input type="text" placeholder="name" name="name" class="form-control">
 	<input type="text" placeholder="health" name="health" class="form-control">
@@ -22,3 +23,4 @@
 	<input type="submit">
 	</form>
 </div>
+<% include ../partials/footer%>

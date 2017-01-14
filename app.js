@@ -4,8 +4,7 @@ app 				= express(),
 mongoose 		= require('mongoose'),
 bodyParser 	= require('body-parser'),
 // methodOver	= require('method-override'),
-Monster 		= require('./models/monster'),
-exphbs  		= require('express-handlebars')
+Monster 		= require('./models/monster')
 
 //Connecting mongoose to the local database
 mongoose.connect('mongodb://localhost/dungeontools')
@@ -16,9 +15,16 @@ app.use(bodyParser.urlencoded({extended: true}))
 // Sets the public directory so css and js can be accessed.
 app.use(express.static(__dirname + '/public'))
 
-// Setting up view engines
-app.engine('hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}))
-app.set('view engine', 'hbs')
+// Set the templating engine to EJS
+app.set('view engine', 'ejs')
+
+//=================================
+//          Routes
+//=================================
+var classRoutes = require('./routes/classes')
+
+// Adding the class routes to express
+app.use('/classes', classRoutes)
 
 // ********************************
 //     Rendering the main pages
@@ -34,9 +40,6 @@ app.get('/calculator', function (req, res) {
 	res.render('calculator', {title: 'Point-Buy Calculator'})
 })
 
-app.get('/class/paladin', function (req, res) {
-	res.render('class/paladin', {title: 'Paladin'})
-})
 
 //========================
 //   Monster routes
@@ -50,6 +53,9 @@ app.get('/monsters', function (req, res) {
 		}
 		else{
 			// Render the page. Links will be populated with dashes client side with js
+			monsters.forEach(function (monster) {
+				console.log(monster.name)
+			})
 			res.render('monsters/index', {title: 'Monsters', monsters: monsters})
 		}
 	})

@@ -1,9 +1,9 @@
+<% include ../partials/header.ejs %>
 <div class="container">
 	<h1>Monsters</h1>
 	<table class="table">
 	  <thead>
 	    <tr>
-	      <th>#</th>
 	      <th>Name</th>
 	      <th>Challenge Rating</th>
 	      <th>Type</th>
@@ -11,14 +11,14 @@
 	    </tr>
 	  </thead>
 	  <tbody>
-		{{#each monsters}}
+		<% monsters.forEach(function (monster){%>
 			<tr>
-			<td><a href="" class="monster">{{this.name}}</a></td>
-			<td>{{this.challenge}}</td>
-			<td>{{this.type}}</td>
-			<td>{{this.size}}</td>
+			<td><a href="" class="monster"><%= monster.name %></a></td>
+			<td><%= monster.challenge %></td>
+			<td><%= monster.type %></td>
+			<td><%= monster.size %></td>
 			</tr>
-		{{/each}}
+		<% }) %>
 	  </tbody>
 	</table>
 	<div class="row">
@@ -26,3 +26,4 @@
 <a href="/monsters/new" class="btn btn-primary btn-lg">Add a new monster.</a>
 </div>
 <script src="/js/monster/index.js"></script>
+<% include ../partials/footer.ejs %>

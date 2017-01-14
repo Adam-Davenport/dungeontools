@@ -1,0 +1,44 @@
+<% include ../partials/header%>
+<div class="container">
+	<h1><%= monster.name %></h1>
+	<p><%= monster.size %> <%= monster.type %></p>
+	<div class="row">
+		<div class="col-sm-6">
+			<p><strong>Armor Class</strong> <%= monster.ac %></p>
+			<p><strong>Hit Points</strong> <%= monster.health %></p>
+			<p><strong>Speed</strong> <%= monster.speed %></p>
+				<table class="table">
+					<tr>
+						<th>Str</th>
+						<th>Dex</th>
+						<th>Con</th>
+						<th>Wis</th>
+						<th>Int</th>
+						<th>Cha</th>
+					</tr>
+					<tr>
+						<td class="score"><%= monster.str %></td>
+						<td class="score"><%= monster.dex %></td>
+						<td class="score"><%= monster.con %></td>
+						<td class="score"><%= monster.int %></td>
+						<td class="score"><%= monster.wis %></td>
+						<td class="score"><%= monster.cha %></td>
+					</tr>
+				</table>
+			<p><strong>Proficiency Bonus</strong> +<%= monster.prof %></p>
+			<p><strong>Senses</strong> <%= monster.senses %></p>
+			<p><strong>Languages</strong> <%= monster.languages %></p>
+			<p><strong>Challenge</strong> <%= monster.challenge %></p>
+		</div>
+		<div class="col-sm-6">
+			<h2>Actions</h2>
+			<% monster.actions.forEach(function (action) { %>
+				<p><%= action %></p>
+			<% }) %>
+		</div>
+	</div>
+	<a href="/monsters/<%= monster.name %>/edit" class="btn btn-primary">Edit</a>
+	<a href="/monsters/<%= monster.name %>/delete" class="btn btn-primary">Delete</a>
+</div>
+<script src="/public/js/show.js"></script>
+<% include ../partials/footer%>
