@@ -1,26 +1,26 @@
-<% include ../partials/header%>
+<% include ../partials/header.ejs%>
 <div class="container">
 	<h1>Edit <%= monster.name %></h1>
-	<form action="/monsters" method="post">
-	<input type="text" placeholder="name" name="name" class="form-control">
-	<input type="text" placeholder="health" name="health" class="form-control">
-	<input type="text" placeholder="type" name="type" class="form-control">
-	<input type="text" placeholder="size" name="size" class="form-control">
-	<input type="text" placeholder="ac" name="ac" class="form-control">
-	<input type="text" placeholder="speed" name="speed" class="form-control">
-	<input type="text" placeholder="str" name="str" class="form-control">
-	<input type="text" placeholder="dex" name="dex" class="form-control">
-	<input type="text" placeholder="con" name="con" class="form-control">
-	<input type="text" placeholder="int" name="int" class="form-control">
-	<input type="text" placeholder="wis" name="wis" class="form-control">
-	<input type="text" placeholder="cha" name="cha" class="form-control">
-	<input type="text" placeholder="prof" name="prof" class="form-control">
-	<input type="text" placeholder="saving" name="saving" class="form-control">
-	<input type="text" placeholder="skills" name="skills" class="form-control">
-	<input type="text" placeholder="senses" name="senses" class="form-control">
-	<input type="text" placeholder="languages" name="languages" class="form-control">
-	<input type="text" placeholder="challenge" name="challenge" class="form-control">
+	<form action="/monsters/<%= monster.name %>?_method=PUT" method="post">
+	<input type="text" value= "<%= monster.name %>" name="monster[name]" class="form-control">
+	<input type="text" value= "<%= monster.health %>" name="monster[health]" class="form-control">
+	<input type="text" value= "<%= monster.type %>" name="monster[type]" class="form-control">
+	<input type="text" value= "<%= monster.size %>" name="monster[size]" class="form-control">
+	<input type="text" value= "<%= monster.ac %>" name="monster[ac]" class="form-control">
+	<input type="text" value= "<%= monster.speed %>" name="monster[speed]" class="form-control">
+	<input type="text" value= "<%= monster.str %>" name="monster[str]" class="form-control">
+	<input type="text" value= "<%= monster.dex %>" name="monster[dex]" class="form-control">
+	<input type="text" value= "<%= monster.con %>" name="monster[con]" class="form-control">
+	<input type="text" value= "<%= monster.int %>" name="monster[int]" class="form-control">
+	<input type="text" value= "<%= monster.wis %>" name="monster[wis]" class="form-control">
+	<input type="text" value= "<%= monster.cha %>" name="monster[cha]" class="form-control">
+	<input type="text" value= "<%= monster.prof %>" name="monster[prof]" class="form-control">
+	<input type="text" value= "<%= monster.saving %>" name="monster[saving]" class="form-control">
+	<input type="text" value= "<%= monster.skills %>" name="monster[skills]" class="form-control">
+	<input type="text" value= "<%= monster.senses %>" name="monster[senses]" class="form-control">
+	<input type="text" value= "<%= monster.languages %>" name="monster[languages]" class="form-control">
+	<input type="text" value= "<%= monster.challenge %>" name="monster[challenge]" class="form-control">
 	<input type="submit">
 	</form>
 </div>
-<% include ../partials/footer%>
+<% include ../partials/footer.ejs%>
