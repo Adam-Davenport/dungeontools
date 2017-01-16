@@ -3,7 +3,7 @@ var express = require('express'),
 app 				= express(),
 mongoose 		= require('mongoose'),
 bodyParser 	= require('body-parser'),
-// methodOver	= require('method-override'),
+ methodOver	= require('method-override'),
 Monster 		= require('./models/monster')
 
 //Connecting mongoose to the local database
@@ -17,6 +17,9 @@ app.use(express.static(__dirname + '/public'))
 
 // Set the templating engine to EJS
 app.set('view engine', 'ejs')
+
+// Use method override
+app.use(methodOver('_method'))
 
 //=================================
 //          Routes
@@ -52,10 +55,6 @@ app.get('/monsters', function (req, res) {
 			console.log(error)
 		}
 		else{
-			// Render the page. Links will be populated with dashes client side with js
-			monsters.forEach(function (monster) {
-				console.log(monster.name)
-			})
 			res.render('monsters/index', {title: 'Monsters', monsters: monsters})
 		}
 	})
@@ -69,7 +68,6 @@ app.get('/monsters/new', function (req, res) {
 // Create route
 app.post('/monsters', function(req,res){
 	Monster.create(req.body.monster, function (error) {
-		console.log(req.body.monster)
 		if(error){
 			console.log(error)
 		}
@@ -112,13 +110,13 @@ app.get('/monsters/:id/edit', function (req, res) {
 
 // Update
 app.put('/monsters/:id', function(req, res){
-	Monster.findAndUpdate({name: req.body.monster}, function (error, monster) {
+	Monster.findOneAndUpdate({name: req.params.id}, req.body.monster, function (error) {
+		console.log(req.body.monster)
 		if(error){
-			res.send(error)
+			console.log(error)
+			res.redirect('/monsters')
 		}
-		else{
-			res.redirect('/monster/s'+req.params.id)
-		}
+		res.redirect('/monsters/'+req.body.monster.name.replace(' ', '_'))
 	})
 })
 
