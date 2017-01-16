@@ -13,7 +13,7 @@
 	  <tbody>
 		<% monsters.forEach(function (monster){%>
 			<tr>
-			<td><a href="" class="monster"><%= monster.name %></a></td>
+			<td><a href="" class="monster"><%= monster.name.replace(' ', '_') %></a></td>
 			<td><%= monster.challenge %></td>
 			<td><%= monster.type %></td>
 			<td><%= monster.size %></td>
@@ -25,5 +25,4 @@
 	</div>
 <a href="/monsters/new" class="btn btn-primary btn-lg">Add a new monster.</a>
 </div>
-<script src="/js/monster/index.js"></script>
 <% include ../partials/footer.ejs %>
