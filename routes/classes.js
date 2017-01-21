@@ -4,6 +4,12 @@
 
 var express = require('express'),
 		router  = express.Router()
+
+// Cleric
+router.get('/cleric', function (req, res) {
+	res.render('classes/cleric', {title: 'Cleric'})
+})
+
 // Paladin
 router.get('/paladin', function (req, res) {
 	res.render('classes/paladin', {title: 'Paladin'})
