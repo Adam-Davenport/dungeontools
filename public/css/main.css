@@ -14,10 +14,10 @@ h1, h2, h3, h4, h5, h6{
 }
 .table-companion{
 	width: 75%;
-	float:; left;
+	float: left;
 }
 .small-table {
-	padding: 0px;
+	padding: 0;
 }
 .small-table table{ 
 	font-size: 12px;
@@ -25,9 +25,17 @@ h1, h2, h3, h4, h5, h6{
 .small-table h3{
 	font-size: 16px;
 }
-.test{
-	float: left;
+.table, .table th{
+	text-align: center;
+	margin: 0;
+	padding: 0;
 }
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
 body{
 	margin-bottom: 15%;
 }
