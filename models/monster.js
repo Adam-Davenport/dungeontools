@@ -1,5 +1,5 @@
 // Monster Model
-var mongoose = require("mongoose");
+var mongoose = require('mongoose')
 var monsterSchema = new mongoose.Schema({
 	name: String,
 	health: String,
@@ -20,5 +20,5 @@ var monsterSchema = new mongoose.Schema({
 	languages: String,
 	challenge: String,
 	actions: Array
-});
-module.exports = mongoose.model("Monster", monsterSchema);
+})
+module.exports = mongoose.model('Monster', monsterSchema)
