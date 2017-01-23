@@ -4,6 +4,7 @@ var itemSchema = new mongoose.Schema({
 	name: String,
 	type: String,
 	description: String,
+	weight: Number,
 	gold: Number,
 	silver: Number,
 	copper: Number
