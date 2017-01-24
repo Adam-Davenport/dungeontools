@@ -24,10 +24,12 @@ app.use(methodOver('_method'))
 //=================================
 //          Routes
 //=================================
-var classRoutes = require('./routes/classes')
+var classRoutes = require('./routes/classes'),
+		itemRoutes = require('./routes/items')
 
 // Adding the class routes to express
 app.use('/classes', classRoutes)
+app.use('/items', itemRoutes)
 
 // ********************************
 //     Rendering the main pages
