@@ -13,7 +13,7 @@
 	  <tbody>
 		<% monsters.forEach(function (monster){%>
 			<tr>
-			<td><a href="" class="monster"><%= monster.name.replace(' ', '_') %></a></td>
+			<td><a href="/monsters/<%=monster.name.replace(' ', '_')%>" class="monster"><%= monster.name %></a></td>
 			<td><%= monster.challenge %></td>
 			<td><%= monster.type %></td>
 			<td><%= monster.size %></td>
