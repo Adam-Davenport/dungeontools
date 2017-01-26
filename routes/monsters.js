@@ -1,9 +1,10 @@
 // Monster Routes
 var express = require('express'),
-		router  = express.Router()
+		router  = express.Router(),
+		Monster = require('../models/monster')
 
 // Index Route
-app.get('/monsters', function (req, res) {
+router.get('/monsters', function (req, res) {
 	Monster.find({}, function (error, monsters) {
 		if(error){
 			console.log(error)
@@ -15,15 +16,16 @@ app.get('/monsters', function (req, res) {
 })
 
 // New Route
-app.get('/monsters/new', function (req, res) {
+router.get('/monsters/new', function (req, res) {
 	res.render('monsters/new', {title: 'New Monster'})
 })
 
 // Create route
-app.post('/monsters', function(req,res){
+router.post('/monsters', function(req,res){
 	Monster.create(req.body.monster, function (error) {
 		if(error){
-			console.log(error)
+			req.flash('error', error.message)
+			res.redirect('/monsters')
 		}
 		else{
 			res.redirect('/monsters')
@@ -32,12 +34,17 @@ app.post('/monsters', function(req,res){
 })
 
 // Show Route
-app.get('/monsters/:id', function (req, res) {
+router.get('/monsters/:id', function (req, res) {
 	// Remove all dashes from the id param to search in the DB probably
 	var thisMonster = req.params.id.replace('_', ' ')
 	Monster.findOne({name: thisMonster}, function(error, foundMonster){
-		if(error || foundMonster == null){
-			res.send(error)
+		if(error){
+			req.flash('error', error.message)
+			res.redirect('/monsters')
+		}
+		else if(!foundMonster){
+			req.flash('error', 'Unable to find monster.')
+			res.redirect('/monsters')
 		}
 		else{
 			res.render('monsters/show', {title: foundMonster.name, monster: foundMonster})
@@ -46,7 +53,7 @@ app.get('/monsters/:id', function (req, res) {
 })
 
 // Edit
-app.get('/monsters/:id/edit', function (req, res) {
+router.get('/monsters/:id/edit', function (req, res) {
 	Monster.findOne({name: req.params.id}, function (error, foundMonster){
 		if(error || foundMonster == null){
 			if(error){
@@ -63,7 +70,7 @@ app.get('/monsters/:id/edit', function (req, res) {
 })
 
 // Update
-app.put('/monsters/:id', function(req, res){
+router.put('/monsters/:id', function(req, res){
 	Monster.findOneAndUpdate({name: req.params.id}, req.body.monster, function (error) {
 		console.log(req.body.monster)
 		if(error){
@@ -75,7 +82,7 @@ app.put('/monsters/:id', function(req, res){
 })
 
 // Delete Route
-app.get('/monsters/:id/delete', function (req, res) {
+router.get('/monsters/:id/delete', function (req, res) {
 	Monster.findOneAndRemove({name: req.params.id}, function (error) {
 		if(error){
 			res.send(error)
