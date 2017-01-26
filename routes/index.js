@@ -4,7 +4,7 @@ var express = require('express'),
 
 // Root Route
 router.get('/', function (req, res) {
-    res.render('index', {title: 'Dungeon Tools'})
+  res.render('index', {title: 'Dungeon Tools'})
 })
 
 // Calculator
