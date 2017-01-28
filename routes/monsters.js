@@ -22,15 +22,26 @@ router.get('/monsters/new', function (req, res) {
 
 // Create route
 router.post('/monsters', function(req,res){
-	Monster.create(req.body.monster, function (error) {
-		if(error){
-			req.flash('error', error.message)
-			res.redirect('/monsters')
-		}
-		else{
-			res.redirect('/monsters')
-		}
-	})
+	var monster = req.body.monster
+	if(!req.body.monster){
+		req.flash('error', 'Please enter data')
+		res.redirect('/monsters/new')
+	}
+	else if(!monster.name || monster.name == ""){
+		req.flash('error', 'Please enter a name')
+		res.redirect('/monsters/new')
+	}
+	else {
+		Monster.create(req.body.monster, function (error) {
+			if (error) {
+				req.flash('error', error.message)
+				res.redirect('/monsters')
+			}
+			else {
+				res.redirect('/monsters')
+			}
+		})
+	}
 })
 
 // Show Route
