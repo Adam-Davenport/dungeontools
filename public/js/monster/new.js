@@ -7,7 +7,8 @@ var scores = document.getElementsByClassName('ability'),
 updateScores()
 setProf()
 setTypes()
-
+setLevels()
+addHD()
 
 function updateScores(){
 	for(i=0; i<scores.length; i++){
@@ -24,6 +25,7 @@ function createOption(select, i, j){
 	while(i<j){
 		var option = document.createElement('option')
 		option.text = i
+		option.value = i
 		select.add(option)
 		i++
 	}
@@ -76,4 +78,22 @@ function getTypes() {
 		'Plant',
 		'Undead'
 	]
+}
+
+function setLevels() {
+	var level = document.getElementById('level')
+	createOption(level,1, 26)
+}
+
+function addHD() {
+	var hd = document.getElementById('hd')
+	for(i=4; i<16; i=i+2){
+		if(i==14){
+			i = 20
+		}
+		var option = document.createElement('option')
+		option.text = 'd' + i
+		option.value = 'd' + i
+		hd.add(option)
+	}
 }
