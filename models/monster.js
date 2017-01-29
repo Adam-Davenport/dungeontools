@@ -2,7 +2,9 @@
 var mongoose = require('mongoose')
 var monsterSchema = new mongoose.Schema({
 	name: String,
-	health: String,
+	level: Number,
+	hd: Number,
+	bonusHealth: Number,
 	type: String,
 	size: String,
 	ac: Number,
