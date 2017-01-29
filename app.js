@@ -7,7 +7,7 @@ flash       = require('connect-flash'),
 methodOver	= require('method-override')
 
 //Connecting mongoose to the local database
-mongoose.connect('mongodb://localhost/dungeontools')
+mongoose.connect('mongodb://10.0.0.8:27017/dungeontools')
 // Using bluebird promise library for mongoose
 mongoose.Promise = require('bluebird')
 
