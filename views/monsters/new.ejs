@@ -47,8 +47,8 @@
 	<div class="row">
 		<div class="col-sm-6">
 			<div class="form-group">
-				<label for="monster[health}">Health:</label>
-				<input type="text" placeholder="health" name="monster[health]" class="form-control">
+				<label for="monster[level]">Level:</label>
+				<select name="monster[level]" class="form-control" id="level"></select>
 			</div>
 			<div class="form-group">
 				<label for="">Type:</label>
@@ -72,6 +72,18 @@
 			</div>
 		</div>
 			<div class="col-sm-6">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-6">
+						<label for="monster[health}">Hit Die:</label>
+						<select name="monster[health]" class="form-control" id="hd"></select>
+					</div>
+					<div class="col-xs-6">
+						<label for="monster[bonusHealth]">Bonus Health:</label>
+						<input type="number" name="monster[bonusHealth]" class="form-control">
+					</div>
+				</div>
+			</div>
 				<div class="form-group">
 					<label for="">Saving Throws:</label>
 					<input type="text" placeholder="saving" name="monster[saving]" class="form-control">
