@@ -1,26 +1,127 @@
 <% include ../partials/header.ejs%>
 <div class="container">
-	<h1>Edit <%= monster.name %></h1>
-	<form action="/monsters/<%= monster.name %>?_method=PUT" method="post">
-	<input type="text" value= "<%= monster.name %>" name="monster[name]" class="form-control">
-	<input type="text" value= "<%= monster.health %>" name="monster[health]" class="form-control">
-	<input type="text" value= "<%= monster.type %>" name="monster[type]" class="form-control">
-	<input type="text" value= "<%= monster.size %>" name="monster[size]" class="form-control">
-	<input type="text" value= "<%= monster.ac %>" name="monster[ac]" class="form-control">
-	<input type="text" value= "<%= monster.speed %>" name="monster[speed]" class="form-control">
-	<input type="text" value= "<%= monster.str %>" name="monster[str]" class="form-control">
-	<input type="text" value= "<%= monster.dex %>" name="monster[dex]" class="form-control">
-	<input type="text" value= "<%= monster.con %>" name="monster[con]" class="form-control">
-	<input type="text" value= "<%= monster.int %>" name="monster[int]" class="form-control">
-	<input type="text" value= "<%= monster.wis %>" name="monster[wis]" class="form-control">
-	<input type="text" value= "<%= monster.cha %>" name="monster[cha]" class="form-control">
-	<input type="text" value= "<%= monster.prof %>" name="monster[prof]" class="form-control">
-	<input type="text" value= "<%= monster.saving %>" name="monster[saving]" class="form-control">
-	<input type="text" value= "<%= monster.skills %>" name="monster[skills]" class="form-control">
-	<input type="text" value= "<%= monster.senses %>" name="monster[senses]" class="form-control">
-	<input type="text" value= "<%= monster.languages %>" name="monster[languages]" class="form-control">
-	<input type="text" value= "<%= monster.challenge %>" name="monster[challenge]" class="form-control">
-	<input type="submit">
+	<h1>Add A New Monster</h1>
+	<form action="/monsters" method="post">
+		<div class="form-group">
+			<label for="monster[name]">Name:</label>
+			<input type="text" placeholder="name" name="monster[name]" class="form-control" value="<%= monster.name %>">
+		</div>
+		<div class="row">
+			<div class="col-xs-4 col-sm-2">
+				<div class="form-group">
+					<label for="monster[str]">Strength:</label>
+					<select name="monster[str]" id="" class="ability form-control">
+						<option class="newScore" value="<%= monster.str%>"><%= monster.str %></option>
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-4 col-sm-2">
+				<div class="form-group">
+					<label for="monster[dex]">Dexterity:</label>
+					<select name="monster[dex]" id="" class="ability form-control">
+						<option class="newScore" value="<%= monster.dex %>"><%= monster.dex %></option>
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-4 col-sm-2">
+				<div class="form-group">
+					<label for="monster[con]">Constitution:</label>
+					<select name="monster[con]" id="" class="ability form-control">
+						<option class="newScore" value="<%= monster.con%>"><%= monster.con %></option>
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-4 col-sm-2">
+				<div class="form-group">
+					<label for="monster[int]">Intelligence:</label>
+					<select name="monster[int]" id="" class="ability form-control">
+						<option class="newScore" value="<%= monster.int %>"><%= monster.int %></option>
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-4 col-sm-2">
+				<div class="form-group">
+					<label for="monster[wis]">Wisdom:</label>
+					<select name="monster[wis]" id="" class="ability form-control">
+						<option class="newScore" value="<%= monster.wis %>"><%= monster.wis %></option>
+					</select>
+				</div>
+			</div>
+			<div class="col-xs-4 col-sm-2">
+				<div class="form-group">
+					<label for="monster[cha]">Charisma:</label>
+					<select name="monster[cha]" id="" class="ability form-control">
+						<option class="newScore" value="<%= monster.cha %>"><%= monster.cha %></option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label for="monster[level]">Level:</label>
+					<select name="monster[level]" class="form-control" id="level" value="<%=monster.level%>"></select>
+				</div>
+				<div class="form-group">
+					<label for="">Type:</label>
+					<select name="monster[type]" id="type" class="form-control"></select>
+				</div>
+				<div class="form-group">
+					<label for="">Size:</label>
+					<input type="text" placeholder="size" name="monster[size]" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="">AC:</label>
+					<input type="text" placeholder="ac" name="monster[ac]" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="">Speed:</label>
+					<input type="text" placeholder="speed" name="monster[speed]" class="form-control">
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+					<div class="row">
+						<div class="col-xs-6">
+							<label for="monster[health}">Hit Die:</label>
+							<select name="monster[health]" class="form-control" id="hd"></select>
+						</div>
+						<div class="col-xs-6">
+							<label for="monster[bonusHealth]">Bonus Health:</label>
+							<input type="number" name="monster[bonusHealth]" class="form-control">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="">Saving Throws:</label>
+					<input type="text" placeholder="saving" name="monster[saving]" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="">Skills:</label>
+					<input type="text" placeholder="skills" name="monster[skills]" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="">Skills:</label>
+					<input type="text" placeholder="senses" name="monster[senses]" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="">Languages:</label>
+					<input type="text" placeholder="languages" name="monster[languages]" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="">Challenge:</label>
+					<input type="text" placeholder="challenge" name="monster[[challenge]" class="form-control">
+				</div>
+			</div>
+		</div>
+		<div class="form-group actions">
+			<label for="">Actions</label>
+			<input type="text" placeholder="Action" name="monster[actions][0]" class="form-control action">
+		</div>
+		<button onclick="addAction()" type="button" class="btn btn-primary">Add Action</button>
+		<input type="submit" class="btn btn-success">
 	</form>
 </div>
+<script src="/js/monster/main.js"></script>
+<script src="/js/monster/edit.js"></script>
 <% include ../partials/footer.ejs%>
