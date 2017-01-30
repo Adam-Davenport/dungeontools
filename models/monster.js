@@ -15,7 +15,6 @@ var monsterSchema = new mongoose.Schema({
 	int: Number,
 	wis: Number,
 	cha: Number,
-	prof: Number,
 	saving: String,
 	skills: String,
 	senses: String,
