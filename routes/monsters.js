@@ -32,12 +32,14 @@ router.post('/monsters', function(req,res){
 		res.redirect('/monsters/new')
 	}
 	else {
+		monster.hd.replace('d', '')
 		Monster.create(req.body.monster, function (error) {
 			if (error) {
 				req.flash('error', error.message)
 				res.redirect('/monsters')
 			}
 			else {
+				req.flash('error', 'Succesfully created monster')
 				res.redirect('/monsters')
 			}
 		})
