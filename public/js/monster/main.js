@@ -84,7 +84,7 @@ function setHD() {
 		}
 		var option = document.createElement('option')
 		option.text = 'd' + i
-		option.value = 'd' + i
+		option.value = i
 		hd.add(option)
 	}
 }
