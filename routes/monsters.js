@@ -1,7 +1,8 @@
 // Monster Routes
 var express = require('express'),
 		router  = express.Router(),
-		Monster = require('../models/monster')
+		Monster = require('../models/monster'),
+		monsterData    = require('../modules/monsterData')
 
 // Index Route
 router.get('/monsters', function (req, res) {
@@ -17,14 +18,14 @@ router.get('/monsters', function (req, res) {
 
 // New Route
 router.get('/monsters/new', function (req, res) {
-	res.render('monsters/new', {title: 'New Monster'})
+	res.render('monsters/new', {title: 'New Monster', monsterData: monsterData})
 })
 
 // Create route
 router.post('/monsters', function(req,res){
 	var monster = req.body.monster
 	if(!req.body.monster){
-		req.flash('error', 'Please enter data')
+		req.flash('error', 'Please enter monsterData')
 		res.redirect('/monsters/new')
 	}
 	else if(!monster.name || monster.name == ""){
@@ -32,7 +33,6 @@ router.post('/monsters', function(req,res){
 		res.redirect('/monsters/new')
 	}
 	else {
-		monster.hd.replace('d', '')
 		Monster.create(req.body.monster, function (error) {
 			if (error) {
 				req.flash('error', error.message)
@@ -77,7 +77,8 @@ router.get('/monsters/:id/edit', function (req, res) {
 			}
 		}
 		else{
-			res.render('monsters/edit', {title: 'Edit ' + foundMonster.name, monster: foundMonster})
+			console.log(monsterData)
+			res.render('monsters/edit', {title: 'Edit ' + foundMonster.name, monster: foundMonster, monsterData: monsterData})
 		}
 	})
 })
