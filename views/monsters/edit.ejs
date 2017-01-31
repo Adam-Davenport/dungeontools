@@ -11,7 +11,9 @@
 				<div class="form-group">
 					<label for="monster[str]">Strength:</label>
 					<select name="monster[str]" id="" class="ability form-control">
-						<option class="newScore" value="<%= monster.str%>"><%= monster.str %></option>
+						<% for(i=0; i<31; i++){ %>
+							<option <% if(monster.str == i){ %> selected <%}%> value="<%=i%>"><%=i%></option>
+						<%}%>
 					</select>
 				</div>
 			</div>
@@ -19,7 +21,9 @@
 				<div class="form-group">
 					<label for="monster[dex]">Dexterity:</label>
 					<select name="monster[dex]" id="" class="ability form-control">
-						<option class="newScore" value="<%= monster.dex %>"><%= monster.dex %></option>
+						<% for(i=0; i<31; i++){ %>
+						<option <% if(monster.dex == i){ %> selected <%}%> value="<%=i%>"><%=i%></option>
+						<%}%>
 					</select>
 				</div>
 			</div>
@@ -27,7 +31,9 @@
 				<div class="form-group">
 					<label for="monster[con]">Constitution:</label>
 					<select name="monster[con]" id="" class="ability form-control">
-						<option class="newScore" value="<%= monster.con%>"><%= monster.con %></option>
+						<% for(i=0; i<31; i++){ %>
+						<option <% if(monster.con == i){ %> selected <%}%> value="<%=i%>"><%=i%></option>
+						<%}%>
 					</select>
 				</div>
 			</div>
@@ -35,7 +41,9 @@
 				<div class="form-group">
 					<label for="monster[int]">Intelligence:</label>
 					<select name="monster[int]" id="" class="ability form-control">
-						<option class="newScore" value="<%= monster.int %>"><%= monster.int %></option>
+						<% for(i=0; i<31; i++){ %>
+						<option <% if(monster.int == i){ %> selected <%}%> value="<%=i%>"><%=i%></option>
+						<%}%>
 					</select>
 				</div>
 			</div>
@@ -43,7 +51,9 @@
 				<div class="form-group">
 					<label for="monster[wis]">Wisdom:</label>
 					<select name="monster[wis]" id="" class="ability form-control">
-						<option class="newScore" value="<%= monster.wis %>"><%= monster.wis %></option>
+						<% for(i=0; i<31; i++){ %>
+						<option <% if(monster.wis == i){ %> selected <%}%> value="<%=i%>"><%=i%></option>
+						<%}%>
 					</select>
 				</div>
 			</div>
@@ -51,7 +61,9 @@
 				<div class="form-group">
 					<label for="monster[cha]">Charisma:</label>
 					<select name="monster[cha]" id="" class="ability form-control">
-						<option class="newScore" value="<%= monster.cha %>"><%= monster.cha %></option>
+						<% for(i=0; i<31; i++){ %>
+						<option <% if(monster.cha == i){ %> selected <%}%> value="<%=i%>"><%=i%></option>
+						<%}%>
 					</select>
 				</div>
 			</div>
@@ -64,11 +76,23 @@
 				</div>
 				<div class="form-group">
 					<label for="">Type:</label>
-					<select name="monster[type]" id="type" class="form-control"></select>
+					<select name="monster[type]" id="type" class="form-control">
+						<% for(i=0; i<monsterData.types.length; i++){%>
+						<option <%if(monster.type == monsterData.types[i]){%>selected <%}%>value="<%=monsterData.types[i]%>">
+							<%=monsterData.types[i]%>
+						</option>
+						<%}%>
+					</select>
 				</div>
 				<div class="form-group">
 					<label for="">Size:</label>
-					<input type="text" placeholder="size" name="monster[size]" class="form-control">
+					<select class="form-control" name="monster[size]">
+						<% for(i=0; i<monsterData.sizes.length; i++){%>
+						<option <%if(monster.size == monsterData.sizes[i]){%>selected <%}%>value="<%=monsterData.sizes[i]%>">
+							<%=monsterData.sizes[i]%>
+						</option>
+						<%}%>
+					</select>
 				</div>
 				<div class="form-group">
 					<label for="">AC:</label>
@@ -122,6 +146,6 @@
 		<input type="submit" class="btn btn-success">
 	</form>
 </div>
-<script src="/js/monster/main.js"></script>
-<script src="/js/monster/edit.js"></script>
+<!--<script src="/js/monster/main.js"></script>-->
+<!--<script src="/js/monster/edit.js"></script>-->
 <% include ../partials/footer.ejs%>
