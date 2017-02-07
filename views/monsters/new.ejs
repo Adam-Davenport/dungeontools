@@ -90,6 +90,11 @@
 			</div>
 			<div class="form-group">
 				<label for="">Size:</label>
+				<select name="monster[size]" class="form-control">
+					<% for(i=0; i<monsterData.sizes.length; i++){ %>
+					<option value="<%= monsterData.sizes[i] %>"><%= monsterData.sizes[i] %></option>
+					<% } %>
+				</select>
 			</div>
 			<div class="form-group">
 				<label for="">AC:</label>
