@@ -77,7 +77,6 @@ router.get('/monsters/:id/edit', function (req, res) {
 			}
 		}
 		else{
-			console.log(monsterData)
 			res.render('monsters/edit', {title: 'Edit ' + foundMonster.name, monster: foundMonster, monsterData: monsterData})
 		}
 	})
