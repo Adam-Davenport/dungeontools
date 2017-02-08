@@ -104,14 +104,17 @@
 				<label for="">Speed:</label>
 				<input type="text" placeholder="speed" name="monster[speed]" class="form-control">
 			</div>
-
 		</div>
 			<div class="col-sm-6">
 			<div class="form-group">
 				<div class="row">
 					<div class="col-xs-6">
 						<label for="monster[health}">Hit Die:</label>
-						<select name="monster[hd]" class="form-control" id="hd"></select>
+						<select name="monster[hd]" class="form-control" id="hd">
+							<% for(i=4; i<14; i=i+2){ %>
+							<option value="<%= i %>">d<%= i %></option>
+							<% } %>
+						</select>
 					</div>
 					<div class="col-xs-6">
 						<label for="monster[bonusHealth]">Bonus Health:</label>
@@ -143,7 +146,7 @@
 		</div>
 		<div class="form-group actions">
 			<label for="">Actions</label>
-			<input type="text" placeholder="Action" name="monster[actions][0]" class="form-control action">
+			<input type="text" name="monster[actions][0]" class="form-control action">
 		</div>
 		<button onclick="addAction()" type="button" class="btn btn-primary">Add Action</button>
 	<input type="submit" class="btn btn-success">
