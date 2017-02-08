@@ -25,7 +25,7 @@
 						<td class="score"><%= monster.cha %> (<%= Math.floor((monster.wis -10)/2)%>)</td>
 					</tr>
 				</table>
-			<p><strong>Proficiency Bonus</strong> +<%= monster.prof %></p>
+			<p><strong>Proficiency Bonus</strong> +<%= Math.max(Math.floor((monster.level-1)/4),0)+2%></p>
 			<p><strong>Senses</strong> <%= monster.senses %></p>
 			<p><strong>Languages</strong> <%= monster.languages %></p>
 			<p><strong>Challenge</strong> <%= monster.challenge %></p>
