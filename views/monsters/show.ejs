@@ -1,4 +1,4 @@
-<% include ../partials/header%>
+<% include ../partials/header.ejs%>
 <div class="container">
 	<h1><%= monster.name %></h1>
 	<p><%= monster.size %> <%= monster.type %></p>
@@ -7,22 +7,22 @@
 			<p><strong>Armor Class</strong> <%= monster.ac %></p>
 			<p><strong>Hit Points</strong> <%= monster.health %></p>
 			<p><strong>Speed</strong> <%= monster.speed %></p>
-				<table class="table">
+				<table class="table text-center">
 					<tr>
-						<th>Str</th>
-						<th>Dex</th>
-						<th>Con</th>
-						<th>Wis</th>
-						<th>Int</th>
-						<th>Cha</th>
+						<th class="text-center">Str</th>
+						<th class="text-center">Dex</th>
+						<th class="text-center">Con</th>
+						<th class="text-center">Wis</th>
+						<th class="text-center">Int</th>
+						<th class="text-center">Cha</th>
 					</tr>
 					<tr>
-						<td class="score"><%= monster.str %></td>
-						<td class="score"><%= monster.dex %></td>
-						<td class="score"><%= monster.con %></td>
-						<td class="score"><%= monster.int %></td>
-						<td class="score"><%= monster.wis %></td>
-						<td class="score"><%= monster.cha %></td>
+						<td class="score"><%= monster.str %> (<%= Math.floor((monster.str -10)/2)%>)</td>
+						<td class="score"><%= monster.dex %> (<%= Math.floor((monster.dex -10)/2)%>)</td>
+						<td class="score"><%= monster.con %> (<%= Math.floor((monster.con -10)/2)%>)</td>
+						<td class="score"><%= monster.int %> (<%= Math.floor((monster.int -10)/2)%>)</td>
+						<td class="score"><%= monster.wis %> (<%= Math.floor((monster.wis -10)/2)%>)</td>
+						<td class="score"><%= monster.cha %> (<%= Math.floor((monster.wis -10)/2)%>)</td>
 					</tr>
 				</table>
 			<p><strong>Proficiency Bonus</strong> +<%= monster.prof %></p>
@@ -40,4 +40,4 @@
 	<a href="/monsters/<%= monster.name %>/edit" class="btn btn-primary">Edit</a>
 	<a href="/monsters/<%= monster.name %>/delete" class="btn btn-primary">Delete</a>
 </div>
-<% include ../partials/footer%>
+<% include ../partials/footer.ejs%>
